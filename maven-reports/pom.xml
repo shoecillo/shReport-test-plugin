@@ -143,7 +143,7 @@
 					</transformer>
 					
 			  </transformers>
-			  <outputDirectory>${project.basedir}/bin</outputDirectory>
+			  <outputDirectory>${project.basedir}/target</outputDirectory>
 			</configuration>
 		      </execution>
 		  </executions>
