@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JUnit Report</title>
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+  
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		
+		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+			<ul class="nav nav-tabs" id="menuTabs">
+	  			<li role="navigation" class="active" data-link="summary-content"><a href="#">Summary</a></li>
+	  			<li role="navigation" data-link="packages-content"><a href="#">Packages</a></li>
+	  			<li role="navigation" data-link="testCases-content"><a href="#">Test Cases</a></li>
+			</ul>
+		</div>
+		<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+			<span class="pull-right" style="padding-top: 22px;padding-right: 20px;font-size: 250x;">JUnit Report</span>
+			<span class="fa fa-pie-chart pull-right" style="padding-top: 20px;padding-right: 5px;font-size: 25px;"></span>
+		</div>
+	</div>
+	<div class="row" id="content">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="summary-content" >
+			<div class="panel panel-default">
+  				<div class="panel-heading">
+    				<h3 class="panel-title"><span class="fa fa-cog"></span>&nbsp;All test executions</h3>
+  				</div>
+  				<div class="panel-body">
+  					<table class="table">
+  						<thead>
+  							<tr></tr>
+  						</thead>
+  						<tbody></tbody>
+  					</table>
+  				</div>
+  				<div class="panel-footer">?</div>
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="packages-content" style="display: none;">
+			<div class="panel panel-default">
+  				<div class="panel-heading">
+    				<h3 class="panel-title"><span class="fa fa-cog"></span>&nbsp;All test packages</h3>
+  				</div>
+  				<div class="panel-body">
+  					<table class="table table-hover">
+  						<thead>
+  							<tr></tr>
+  						</thead>
+  						<tbody></tbody>
+  					</table>
+  				</div>
+  				<div class="panel-footer">Packages summary</div>
+			</div>
+			<div id="packages-detail" style="border: thin solid #ddd; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);display: none;border-radius:4px;max-height: 250px;overflow: auto;">
+				<div id="packages-div-name" style="background-image: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);padding-left: 20px;width: 100%;border-radius:4px;">
+					<span class="fa fa-cogs fa-2x"></span>
+					<span id="packages-name" style="font-size: 25px;"></span>
+				</div>
+				<table class="table">
+  					<thead>
+  						<tr></tr>
+  					</thead>
+  					<tbody></tbody>
+  				</table>
+			</div>
+			<div id="package-info" class="well">Package info here.Press selected row in above table.</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="testCases-content" style="display: none;">
+			<div class="panel panel-default">
+  				<div class="panel-heading">
+    				<h3 class="panel-title"><span class="fa fa-cog"></span>&nbsp;All test cases<span class="pull-right">Test Cases Info in left menu.</span></h3>
+  				</div>
+  				<div class="panel-body">
+  					<div class="row">
+  						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+  							<div style="height: 350px;overflow: auto;border-right: thin solid #ddd;">
+	  							<ul class="list-unstyled" id="testcase-list">
+								 
+								</ul>
+							</div>
+  						</div>
+  						<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" id="testCases-result" style="display: none;">
+  							<div class="panel panel-default" style="border:none;box-shadow:none;">
+				  				<div style="padding: 10px;width: 100%;">
+				    				<span class="panel-title" style="font-size: 20px;"></span>
+				    				<hr>
+				  				</div>
+				  				<div class="panel-body" style="max-height: 300px;overflow: auto;">
+				  					<table class="table table-hover">
+				  						<thead>
+				  							<tr></tr>
+				  						</thead>
+				  						<tbody></tbody>
+				  					</table>
+				  					<div class="row">
+				  						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="testSuite-bar">
+				  							
+				  						</div>
+				  					</div>
+				  				</div>
+				  			</div>
+  						</div>
+  					</div>
+  				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalErrorDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document" style="margin-top: 200px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        	
+        	<ul class="list-unstyled">
+        		<li><span style="font-weight: bold;">Cause:</span><BR><span id="causeError"></span></li>
+        		<li><hr></li>
+				<li>
+					<div style="max-height: 250px;overflow: auto;padding: 10px;">
+						<span style="font-weight: bold;">Trace:</span><BR><span id="traceError"></span>
+					</div>
+				</li>					 
+			</ul>
+        	
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script type="text/javascript" src="jsLib/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="jsLib/bootstrap.min.js"></script>
+<!-- JS DATA GENERATED BY TOOL -->
+<script type="text/javascript" src="data/summary.js"></script>
+<script type="text/javascript" src="data/pkgList.js"></script>
+<script type="text/javascript" src="data/testCases.js"></script>
+
+<script type="text/javascript" src="jsLib/mainScript.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		mainScript.init();
+		
+	});
+	
+</script>
+</body>
+</html>
