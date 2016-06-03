@@ -202,6 +202,47 @@ var mainScript =
 			$(this).css({"color":"black","font-size":"15px"});
 		});
 	},
+	viewErrors : function()
+	{
+		var listErrors = [];
+		$.each(testCases,function(index,val)
+		{
+			var obj = {};
+			obj.testSuite = val.testSuite;
+			obj.table = [];
+			$.each(val.table,function(i,data)
+			{
+				if(data.Result == "KO")
+				{
+					obj.table.push(data)
+				}
+			});
+			listErrors.push(obj)
+		});
+		
+		$.each(listErrors,function(index,val)
+		{
+			$.each(val.table,function(i,v)
+			{
+				$("#errors-content  table tbody").append("<tr></tr>");
+				$("#errors-content  table tbody tr:last").append("<td>"+val.testSuite+"</td>");
+				icon = "<span class='fa fa-exclamation-triangle'></span>";
+				$("#errors-content  table tbody tr:last").append("<td style='color:red;padding-left:20px;'>"+icon+"</td>");
+				var err = v.nMethod.split("##");
+				$("#errors-content  table tbody tr:last").append("<td>"+err[0]+"</td>");
+				$("#errors-content  table tbody tr:last").css("cursor","pointer");
+				$("#errors-content  table tbody tr:last").click(function()
+				{
+					$("#modalErrorDetail h4").html("<span class='fa fa-exclamation-triangle fa-2x' style='color:red;'></span>&nbsp;&nbsp;"+err[0]);
+					$("#causeError").html(err[1]);
+					$("#traceError").html(err[2]);
+					$('#modalErrorDetail').modal('show');
+				});
+				$("#errors-content table tbody tr:last").append("<td>"+v.Time+"</td>");
+			});
+			
+		});
+	},
 	init : function()
 	{
 		$("#menuTabs li").click(function()
