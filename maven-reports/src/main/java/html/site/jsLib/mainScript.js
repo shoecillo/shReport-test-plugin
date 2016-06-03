@@ -257,5 +257,6 @@ var mainScript =
 		mainScript.summaryView();
 		mainScript.packageView();
 		mainScript.testCaseView();
+		mainScript.viewErrors();
 	}
 }
