@@ -96,6 +96,13 @@ public class ExtractXml
 				bean.setName(name.replaceAll("\n", "<BR>"));
 				
 			}
+			else if(e.getChild("error") != null)
+			{
+				Element err = e.getChild("error");
+				name += "##"+err.getAttributeValue("message")+"##"+err.getText();
+				bean.setName(name.replaceAll("\n", "<BR>"));
+				
+			}
 			else
 			{
 				bean.setName(name);
